@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="MultitrackPlayer.Views.MultitrackPlayerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controls="clr-namespace:MultitrackPlayer.Controls"
+             xmlns:views="clr-namespace:MultitrackPlayer.Views"
+             xmlns:viewModels="clr-namespace:MultitrackPlayer.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="500" d:DataContext="{d:DesignInstance viewModels:MultitrackPlayerViewModel}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <!-- tracks list -->
+            <ColumnDefinition Width="150" />
+            <!-- splitter -->
+            <ColumnDefinition Width="2" />
+            <!-- media items list -->
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        
+        <Grid.RowDefinitions>
+            <!-- main area -->
+            <RowDefinition Height="*" />
+            <!-- toolbar -->
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <views:TracksView DataContext="{Binding TracksViewModel}"  Margin="0,15,0,0" />
+        <GridSplitter Grid.Column="1" ResizeDirection="Columns" VerticalAlignment="Stretch" />
+
+        <!-- media items timeline -->
+        <Grid Grid.Column="2">
+            <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto">
+                <StackPanel>
+                    <controls:TimeRuler Height="15" Zoom="{Binding ZoomFactor, Mode=OneWay}" Length="00:00:40" />
+                    <views:MediaItemsTimelineView DataContext="{Binding MediaItemsTimelineViewModel}" Margin="0,1,0,0" />
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+        
+        <!-- toolbar -->
+        <ToolBar Grid.Row="1" Grid.ColumnSpan="3">
+            <Label Content="Zoom"></Label>
+            <Slider Minimum="0.55" Maximum="3" Value="{Binding ZoomFactor}" Width="100" />
+        </ToolBar>
+    </Grid>
+</UserControl>
