@@ -56,16 +56,38 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\TimeThumb.cs" />
+    <Compile Include="DragDrop\TrackViewModelDropHandler.cs" />
     <Compile Include="Model\Implementations\MediaItem.cs" />
     <Compile Include="Model\Implementations\Track.cs" />
     <Compile Include="netfx\System\Guard.cs" />
     <Compile Include="netfx\System\Windows\Input\DelegateCommand.cs" />
+    <Compile Include="Services\MediaItemsReorder.cs" />
+    <Compile Include="Services\PlaybackServiceStoryboard.cs" />
+    <Compile Include="Services\PlaybackService.cs" />
     <Compile Include="TestData.cs" />
     <Compile Include="Utils\CollectionObserver.cs" />
+    <Compile Include="Utils\DragDrop\DefaultDragHandler.cs" />
+    <Compile Include="Utils\DragDrop\DefaultDropHandler.cs" />
+    <Compile Include="Utils\DragDrop\DragAdorner.cs" />
+    <Compile Include="Utils\DragDrop\DragDrop.cs" />
+    <Compile Include="Utils\DragDrop\DragInfo.cs" />
+    <Compile Include="Utils\DragDrop\DropInfo.cs" />
+    <Compile Include="Utils\DragDrop\DropTargetAdorner.cs" />
+    <Compile Include="Utils\DragDrop\DropTargetAdorners.cs" />
+    <Compile Include="Utils\DragDrop\DropTargetHighlightAdorner.cs" />
+    <Compile Include="Utils\DragDrop\DropTargetInsertionAdorner.cs" />
+    <Compile Include="Utils\DragDrop\IDragSource.cs" />
+    <Compile Include="Utils\DragDrop\IDropTarget.cs" />
+    <Compile Include="Utils\DragDrop\Helpers\ItemsControlExtensions.cs" />
+    <Compile Include="Utils\DragDrop\Helpers\TypeUtilities.cs" />
+    <Compile Include="Utils\DragDrop\Helpers\VisualTreeExtensions.cs" />
     <Compile Include="Utils\NotificationObject.cs" />
+    <Compile Include="Utils\PropertyObserver.cs" />
     <Compile Include="Utils\PropertySupport.cs" />
     <Compile Include="ValueConverters\ColorToSolidColorBrushValueConverter.cs" />
     <Compile Include="ValueConverters\MediaItemDurationToWidthValueConverter.cs" />
+    <Compile Include="ValueConverters\MultiplyConverter.cs" />
     <Compile Include="ViewModels\MediaItemsTimeline\MediaItemsTimelineViewModel.cs" />
     <Compile Include="ViewModels\MediaItemsTimeline\MediaItemViewModel.cs" />
     <Compile Include="ViewModels\MediaItemsTimeline\TrackViewModel.cs" />
@@ -136,7 +158,6 @@
     </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

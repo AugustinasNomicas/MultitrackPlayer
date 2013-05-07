@@ -3,7 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:c="clr-namespace:MultitrackPlayer.Controls"
         xmlns:views="clr-namespace:MultitrackPlayer.Views"
-        Title="MainWindow" Height="350" Width="525">
+        Loaded="MainWindow_OnLoaded"
+        Title="MainWindow" Height="525" Width="700">
 
     <views:MultitrackPlayerView x:Name="MultitrackPlayerView" />
 </Window>

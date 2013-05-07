@@ -1,16 +1,14 @@
 ﻿using System.Collections.ObjectModel;
 using Microsoft.Practices.Prism.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MultitrackPlayer.DragDrop;
 using MultitrackPlayer.Model;
 
 namespace MultitrackPlayer.ViewModels.MediaItemsTimeline
 {
-    public class TrackViewModel: NotificationObject
+    public class TrackViewModel : NotificationObject
     {
         public ObservableCollection<MediaItemViewModel> MediaItems { get; set; }
+        public TrackViewModelDropHandler DropHandler { get; set; }
+        public ITrack Track { get; set; }
     }
 }

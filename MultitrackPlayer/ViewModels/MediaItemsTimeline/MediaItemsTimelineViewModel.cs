@@ -3,8 +3,9 @@ using Microsoft.Practices.Prism.ViewModel;
 
 namespace MultitrackPlayer.ViewModels.MediaItemsTimeline
 {
-    public class MediaItemsTimelineViewModel: NotificationObject
+    public class MediaItemsTimelineViewModel : NotificationObject
     {
+        #region Properties
         private double _zoomFactor = 1.0;
         public double ZoomFactor
         {
@@ -32,7 +33,7 @@ namespace MultitrackPlayer.ViewModels.MediaItemsTimeline
                 _tracks = value;
                 RaisePropertyChanged();
             }
-        }
-        
+        } 
+        #endregion
     }
 }

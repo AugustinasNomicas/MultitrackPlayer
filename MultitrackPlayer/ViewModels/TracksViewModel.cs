@@ -10,18 +10,36 @@ namespace MultitrackPlayer.ViewModels
 {
     public class TracksViewModel: NotificationObject
     {
-        private ObservableCollection<ITrack> _Tracks;
+        private ObservableCollection<ITrack> _tracks;
         public ObservableCollection<ITrack> Tracks
         {
             get
             {
-                return _Tracks;
+                return _tracks;
             }
             set
             {
-                if (_Tracks != value)
+                if (_tracks != value)
                 {
-                    _Tracks = value;
+                    _tracks = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+
+        private ITrack _selectedTrack;
+        public ITrack SelectedTrack
+        {
+            get
+            {
+                return _selectedTrack;
+            }
+            set
+            {
+                if (_selectedTrack != value)
+                {
+                    _selectedTrack = value;
                     RaisePropertyChanged();
                 }
             }

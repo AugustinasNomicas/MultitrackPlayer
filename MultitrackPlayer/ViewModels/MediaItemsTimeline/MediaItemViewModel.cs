@@ -1,10 +1,12 @@
-﻿using Microsoft.Practices.Prism.ViewModel;
+﻿using System.Windows;
+using Microsoft.Practices.Prism.ViewModel;
 using MultitrackPlayer.Model;
 
 namespace MultitrackPlayer.ViewModels.MediaItemsTimeline
 {
-    public class MediaItemViewModel: NotificationObject
+    public class MediaItemViewModel : NotificationObject
     {
+        #region Properties
         public MediaItemsTimelineViewModel MediaItemsTimelineViewModel { get; set; }
 
         private IMediaItem _mediaItem;
@@ -22,9 +24,47 @@ namespace MultitrackPlayer.ViewModels.MediaItemsTimeline
             }
         }
 
+        private TrackViewModel _trackViewModel;
+        public TrackViewModel TrackViewModel
+        {
+            get
+            {
+                return _trackViewModel;
+            }
+            set
+            {
+                if (_trackViewModel != value)
+                {
+                    _trackViewModel = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        private bool _isDragOver;
+        public bool IsDragOver
+        {
+            get
+            {
+                return _isDragOver;
+            }
+            set
+            {
+                if (_isDragOver != value)
+                {
+                    _isDragOver = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+        
+        
+        #endregion
+
         public override string ToString()
         {
             return MediaItem != null ? MediaItem.ToString() : "Null";
         }
+
     }
 }

@@ -86,9 +86,12 @@ namespace MultitrackPlayer.Controls
         protected override void OnRender(DrawingContext drawingContext)
         {
             base.OnRender(drawingContext);
+            RenderBackground(drawingContext);
 
             if (Zoom == 0)
                 Zoom = 1;
+
+
 
             var millisecondsPerPixelScaled = MillisecondsPerPixel * Zoom;
             var lengthInPixels = Length.TotalMilliseconds / millisecondsPerPixelScaled;
@@ -109,6 +112,15 @@ namespace MultitrackPlayer.Controls
         private void RenderLabel(TimeSpan labelTime, double xPosition, DrawingContext drawingContext)
         {
             drawingContext.DrawText(GetFormattedText(labelTime.ToString(@"mm\:ss\.ff")), new Point(xPosition, 0));
+        }
+
+        /// <summary>
+        /// Renders background with Background brush property
+        /// </summary>
+        /// <param name="drawingContext">>Drawing context from OnRender method</param>
+        private void RenderBackground(DrawingContext drawingContext)
+        {
+            drawingContext.DrawRectangle(Background, null, new Rect(RenderSize));
         }
 
         /// <summary>

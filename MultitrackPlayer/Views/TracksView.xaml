@@ -6,7 +6,13 @@
              xmlns:viewModels="clr-namespace:MultitrackPlayer.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" d:DataContext="{d:DesignInstance viewModels:TracksViewModel}">
-    <ListBox ItemsSource="{Binding Tracks}">
+    <ListBox ItemsSource="{Binding Tracks}" 
+             SelectedItem="{Binding SelectedTrack}"
+             BorderThickness="0"
+             BorderBrush="Transparent"
+             Background="Transparent"
+             ScrollViewer.VerticalScrollBarVisibility="Hidden" 
+             ScrollViewer.HorizontalScrollBarVisibility="Hidden">
         <ListBox.ItemTemplate>
             <DataTemplate>
                 <TextBlock Text="{Binding Name}" Margin="3" />

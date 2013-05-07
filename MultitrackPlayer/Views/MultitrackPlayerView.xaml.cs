@@ -23,5 +23,28 @@ namespace MultitrackPlayer.Views
         {
             InitializeComponent();
         }
+
+        private void MediaItemsScroller_OnScrollChanged(object sender, ScrollChangedEventArgs e)
+        {
+            var scrollViewer = sender as ScrollViewer;
+            if (scrollViewer != null)
+                TracksScroller.ScrollToVerticalOffset(scrollViewer.VerticalOffset);
+        }
+
+        private void TracksScroller_OnScrollChanged(object sender, ScrollChangedEventArgs e)
+        {
+            var scrollViewer = sender as ScrollViewer;
+            if (scrollViewer != null)
+                MediaItemsScroller.ScrollToVerticalOffset(scrollViewer.VerticalOffset);
+        }
+
+        private void TimeRuler_OnMouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                TimeThumb.Position = e.GetPosition(TimeThumb.Parent as IInputElement).X;
+            }
+        }
+
     }
 }

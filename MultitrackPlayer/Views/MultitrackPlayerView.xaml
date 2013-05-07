@@ -6,8 +6,20 @@
              xmlns:controls="clr-namespace:MultitrackPlayer.Controls"
              xmlns:views="clr-namespace:MultitrackPlayer.Views"
              xmlns:viewModels="clr-namespace:MultitrackPlayer.ViewModels"
+             xmlns:valueConverters="clr-namespace:MultitrackPlayer.ValueConverters"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="500" d:DataContext="{d:DesignInstance viewModels:MultitrackPlayerViewModel}">
+
+    <UserControl.Resources>
+        <valueConverters:MediaItemDurationToWidthValueConverter x:Key="MediaItemDurationToWidthValueConverter"></valueConverters:MediaItemDurationToWidthValueConverter>
+
+        <ControlTemplate x:Key="PlayThumb">
+            <Border Background="Transparent" Padding="0,0,8,0">
+                <Rectangle Width="2" Stroke="#550000AA" StrokeThickness="2" />
+            </Border>
+        </ControlTemplate>
+    </UserControl.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <!-- tracks list -->
@@ -17,31 +29,84 @@
             <!-- media items list -->
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        
+
         <Grid.RowDefinitions>
-            <!-- main area -->
-            <RowDefinition Height="*" />
+            <!-- MediaElement -->
+            <RowDefinition Height="210" />
             <!-- toolbar -->
             <RowDefinition Height="Auto" />
+            <!-- main area -->
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <views:TracksView DataContext="{Binding TracksViewModel}"  Margin="0,15,0,0" />
-        <GridSplitter Grid.Column="1" ResizeDirection="Columns" VerticalAlignment="Stretch" />
+        <!-- Video Output -->
+        <Border Grid.ColumnSpan="3" HorizontalAlignment="Stretch" Background="Black" Padding="2">
+            <Grid>
+                <Label Content="Video output" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <MediaElement x:Name="MediaElement" HorizontalAlignment="Stretch" ></MediaElement>
+            </Grid>
+        </Border>
+
+        <ScrollViewer Margin="0,16,0,15" 
+                      VerticalAlignment="Top"
+                      Grid.Row="2"
+                      VerticalScrollBarVisibility="Hidden" 
+                      x:Name="TracksScroller" 
+                      HorizontalScrollBarVisibility="Disabled"  
+                      ScrollChanged="TracksScroller_OnScrollChanged">
+            <views:TracksView DataContext="{Binding TracksViewModel}" Background="LightGray" />
+        </ScrollViewer>
+
+        <GridSplitter Grid.Column="1" Grid.Row="1" ResizeDirection="Columns" VerticalAlignment="Stretch" />
+
+        <!-- toolbar -->
+        <ToolBarTray Grid.Row="1" Grid.Column="2">
+            <ToolBar>
+
+                <Button Content="Play" Command="{Binding PlayCommand}" />
+                <Button Content="Stop" Command="{Binding StopCommand}" />
+            </ToolBar>
+            <ToolBar>
+                <Label Content="Time"></Label>
+                <Border BorderBrush="White" BorderThickness="1">
+                    <TextBlock Text="{Binding PlaybackPosition, StringFormat=mm\\:ss\\.ff}" 
+                               Background="Black" 
+                               Margin="2" 
+                               Padding="2" 
+                               Foreground="White" 
+                               FontSize="14"
+                               VerticalAlignment="Center" />
+                </Border>
+            </ToolBar>
+            <ToolBar>
+                <Label Content="Zoom"></Label>
+                <Slider Minimum="0.55" Maximum="3" Value="{Binding ZoomFactor}" Width="100" />
+            </ToolBar>
+        </ToolBarTray>
 
         <!-- media items timeline -->
-        <Grid Grid.Column="2">
-            <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto">
-                <StackPanel>
-                    <controls:TimeRuler Height="15" Zoom="{Binding ZoomFactor, Mode=OneWay}" Length="00:00:40" />
-                    <views:MediaItemsTimelineView DataContext="{Binding MediaItemsTimelineViewModel}" Margin="0,1,0,0" />
-                </StackPanel>
+        <Grid Grid.Column="2" Grid.Row="2" Margin="0,2,0,0">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" x:Name="MediaItemsScroller" CanContentScroll="False" ScrollChanged="MediaItemsScroller_OnScrollChanged">
+                <Grid>
+                    <StackPanel>
+                        <controls:TimeRuler x:Name="TimeRuler"
+                                            MouseMove="TimeRuler_OnMouseMove"
+                                            Background="LightGray"
+                                            Cursor="Hand"
+                                            FontWeight="Bold"
+                                            Height="16" Zoom="{Binding ZoomFactor, Mode=OneWay}" Length="{Binding TotalLength}" />
+                        <views:MediaItemsTimelineView x:Name="MediaItemsTimelineView"  DataContext="{Binding MediaItemsTimelineViewModel}" Margin="0,1,0,0" />
+                    </StackPanel>
+                    <!-- play marker -->
+                    <controls:TimeThumb Template="{StaticResource PlayThumb}"
+                                        MaxValue="{Binding TotalLength}"
+                                        Value="{Binding PlaybackPosition}"
+                                        Zoom="{Binding ZoomFactor, Mode=OneWay}"
+                                        x:Name="TimeThumb" />
+                </Grid>
             </ScrollViewer>
         </Grid>
-        
-        <!-- toolbar -->
-        <ToolBar Grid.Row="1" Grid.ColumnSpan="3">
-            <Label Content="Zoom"></Label>
-            <Slider Minimum="0.55" Maximum="3" Value="{Binding ZoomFactor}" Width="100" />
-        </ToolBar>
+
+
     </Grid>
 </UserControl>

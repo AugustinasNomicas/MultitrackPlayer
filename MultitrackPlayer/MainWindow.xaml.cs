@@ -19,16 +19,19 @@ namespace MultitrackPlayer
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly MultitrackPlayerController _multitrackPlayerController;
+        private MultitrackPlayerController _multitrackPlayerController;
 
         public MainWindow()
         {
             InitializeComponent();
+        }
 
+        private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
+        {
             // quick and dirty multitrack player initialization
             _multitrackPlayerController = new MultitrackPlayerController();
             MultitrackPlayerView.DataContext = _multitrackPlayerController.MultitrackPlayerViewModel;
+            _multitrackPlayerController.InitializeMediaElement(MultitrackPlayerView.MediaElement);
         }
-
     }
 }

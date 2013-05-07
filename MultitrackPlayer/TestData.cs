@@ -26,8 +26,8 @@ namespace MultitrackPlayer
                                         {
                                             Color = Colors.CadetBlue,
                                             Duration = new TimeSpan(0, 0, 30),
-                                            FileName = string.Empty,
-                                            Name = "Dodgers Logo Loop"
+                                            FileName = @"..\..\..\Videos\Wildlife.wmv",
+                                            Name = "Wildlife.wmv"
                                         }
                                 }
                         },
@@ -40,8 +40,8 @@ namespace MultitrackPlayer
                                         {
                                             Color = Colors.CadetBlue,
                                             Duration = new TimeSpan(0, 0, 30),
-                                            FileName = string.Empty,
-                                            Name = "Facia Left Field"
+                                            FileName = @"..\..\..\Videos\ss_11_20_99.wmv",
+                                            Name = "ss_11_20_99.wmv"
                                         }
                                 }
                         },
@@ -54,15 +54,15 @@ namespace MultitrackPlayer
                                         {
                                             Color = Colors.CadetBlue,
                                             Duration = new TimeSpan(0, 0, 15),
-                                            FileName = string.Empty,
-                                            Name = "Toyota Dealers Logo"
+                                            FileName = @"..\..\..\Videos\sample-rTR.avi",
+                                            Name = @"sample-rTR.avi"
                                         },
                                     new MediaItem
                                         {
                                             Color = Colors.CadetBlue,
                                             Duration = new TimeSpan(0, 0, 15),
-                                            FileName = string.Empty,
-                                            Name = "Toyota Dealers Local Sponsor",
+                                            FileName = @"..\..\..\Videos\Wildlife.wmv",
+                                            Name =  @"Wildlife.wmv",
                                             Order = 1
                                         }
                                 }
@@ -76,15 +76,15 @@ namespace MultitrackPlayer
                                         {
                                             Color = Colors.MediumSeaGreen,
                                             Duration = new TimeSpan(0, 0, 15),
-                                            FileName = string.Empty,
-                                            Name = "Pitcher Stats"
+                                            FileName = @"..\..\..\Videos\sample-rTR.avi",
+                                            Name = "sample-rTR.avi"
                                         },
                                     new MediaItem
                                         {
                                             Color = Colors.MediumSeaGreen,
                                             Duration = new TimeSpan(0, 0, 15),
-                                            FileName = string.Empty,
-                                            Name = "Batter Stats",
+                                            FileName = @"..\..\..\Videos\Wildlife.wmv",
+                                            Name = "Wildlife.wmv",
                                             Order = 1
                                         }
                                 }
@@ -98,15 +98,15 @@ namespace MultitrackPlayer
                                         {
                                             Color = Colors.MediumSeaGreen,
                                             Duration = new TimeSpan(0, 0, 15),
-                                            FileName = string.Empty,
-                                            Name = "Center Batting Order"
+                                             FileName = @"..\..\..\Videos\Wildlife.wmv",
+                                            Name = "Wildlife.wmv"
                                         },
                                     new MediaItem
                                         {
                                             Color = Colors.MediumSeaGreen,
                                             Duration = new TimeSpan(0, 0, 15),
-                                            FileName = string.Empty,
-                                            Name = "Center Home Run Stats",
+                                             FileName = @"..\..\..\Videos\Wildlife.wmv",
+                                            Name = "Wildlife.wmv",
                                             Order = 1
                                         }
                                 }
@@ -120,23 +120,23 @@ namespace MultitrackPlayer
                                         {
                                             Color = Colors.MediumSeaGreen,
                                             Duration = new TimeSpan(0, 0, 10),
-                                            FileName = string.Empty,
-                                            Name = "National Scores"
+                                            FileName = @"..\..\..\Videos\Wildlife.wmv",
+                                            Name = "Wildlife.wmv"
                                         },
                                     new MediaItem
                                         {
                                             Color = Colors.DarkOrange,
-                                            Duration = new TimeSpan(0, 0, 10),
-                                            FileName = string.Empty,
-                                            Name = "Arena Logo Still Graphic",
+                                            Duration = new TimeSpan(0, 0, 7),
+                                            FileName = @"..\..\..\Videos\clipcanvas_14348_WMV_320x180.wmv",
+                                            Name = "clipcanvas_14348_WMV_320x180.wmv",
                                             Order = 1
                                         },
                                     new MediaItem
                                         {
                                             Color = Colors.MediumSeaGreen,
-                                            Duration = new TimeSpan(0, 0, 10),
-                                            FileName = string.Empty,
-                                            Name = "American Scores",
+                                            Duration = new TimeSpan(0, 0, 7),
+                                            FileName = @"..\..\..\Videos\tl_08_15_01.wmv",
+                                            Name = "tl_08_15_01.wmv",
                                             Order = 2
                                         }
                                 }
@@ -150,23 +150,23 @@ namespace MultitrackPlayer
                                         {
                                             Color = Colors.CadetBlue,
                                             Duration = new TimeSpan(0, 0, 10),
-                                            FileName = string.Empty,
-                                            Name = "Local Toyota Ad"
+                                            FileName = @"..\..\..\Videos\tl_08_15_01.wmv",
+                                            Name = "tl_08_15_01.wmv"
                                         },
                                     new MediaItem
                                         {
                                             Color = Colors.DarkOrange,
                                             Duration = new TimeSpan(0, 0, 10),
-                                            FileName = string.Empty,
-                                            Name = "Still Graphic",
+                                            FileName = @"..\..\..\Videos\clipcanvas_14348_WMV_320x180.wmv",
+                                            Name = "clipcanvas_14348_WMV_320x180.wmv",
                                             Order = 1
                                         },
                                     new MediaItem
                                         {
                                             Color = Colors.CadetBlue,
                                             Duration = new TimeSpan(0, 0, 10),
-                                            FileName = string.Empty,
-                                            Name = "Toyta Play of the day",
+                                            FileName = @"..\..\..\Videos\ss_11_20_99.wmv",
+                                            Name = "ss_11_20_99.wmv",
                                             Order = 2
                                         }
                                 }
