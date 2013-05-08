@@ -52,7 +52,10 @@ namespace MultitrackPlayer.DragDrop
 
             foreach (var o in mediaItemViewModels)
             {
-                destinationList.Insert(insertIndex++, o.MediaItem);
+                if (insertIndex < destinationList.Count)
+                    destinationList.Insert(insertIndex++, o.MediaItem);
+                else
+                    destinationList.Add(o.MediaItem);
             }
         }
 
