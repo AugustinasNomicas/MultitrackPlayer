@@ -16,9 +16,7 @@
         <valueConverters:ColorToSolidColorBrushValueConverter x:Key="ColorToSolidColorBrushValueConverter" />
 
         <DataTemplate DataType="{x:Type mediaItemsTimeline:MediaItemViewModel}">
-            <Border Background="{Binding MediaItem.Color, Converter={StaticResource ColorToSolidColorBrushValueConverter}}" BorderThickness="1" Padding="2"
-                 
-                    >
+            <Border Background="{Binding MediaItem.Color, Converter={StaticResource ColorToSolidColorBrushValueConverter}}" BorderThickness="1" Padding="2">
                 <Border.Width>
                     <MultiBinding Converter="{StaticResource MediaItemDurationToWidthValueConverter}">
                         <Binding Path="MediaItem.Duration" />
@@ -44,6 +42,9 @@
                               dragDrop:DragDrop.IsDropTarget="True"
                               dragDrop:DragDrop.IsDragSource="True"
                               dragDrop:DragDrop.DropHandler="{Binding DropHandler}"
+                              Background="White"
+                              MinHeight="22"
+                              MinWidth="50"
                               >
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
