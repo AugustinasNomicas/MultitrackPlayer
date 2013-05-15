@@ -10,13 +10,29 @@ namespace MultitrackPlayer.ViewModels
         public TracksViewModel TracksViewModel { get; set; }
         public MediaItemsTimelineViewModel MediaItemsTimelineViewModel { get; set; }
 
-        public ICommand ZoomInCommand { get; set; }
-        public ICommand ZoomOutCommand { get; set; }
-
         public ICommand PlayCommand { get; set; }
         public ICommand StopCommand { get; set; }
 
         public event EventHandler UserUpdatedPosition;
+
+
+        private int _millisecondsPerPixel;
+        public int MillisecondsPerPixel
+        {
+            get
+            {
+                return _millisecondsPerPixel;
+            }
+            set
+            {
+                if (_millisecondsPerPixel != value)
+                {
+                    _millisecondsPerPixel = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+        
 
         public double ZoomFactor
         {
@@ -33,47 +49,41 @@ namespace MultitrackPlayer.ViewModels
         }
 
 
-        private TimeSpan _TotalLength = TimeSpan.FromSeconds(360);
+        private TimeSpan _totalLength = TimeSpan.FromSeconds(360);
         public TimeSpan TotalLength
         {
             get
             {
-                return _TotalLength;
+                return _totalLength;
             }
             set
             {
-                if (_TotalLength != value)
+                if (_totalLength != value)
                 {
-                    _TotalLength = value;
+                    _totalLength = value;
                     RaisePropertyChanged();
                 }
             }
         }
         
 
-        private TimeSpan _PlaybackPosition;
+        private TimeSpan _playbackPosition;
         public TimeSpan PlaybackPosition
         {
             get
             {
-                return _PlaybackPosition;
+                return _playbackPosition;
             }
             set
             {
-                if (_PlaybackPosition != value)
+                if (_playbackPosition != value)
                 {
                     // playback position updated came from user
-                    _PlaybackPosition = value;
+                    _playbackPosition = value;
                     RaisePropertyChanged();
                     OnUserUpdatedPosition();
                 }
             }
-        }
-
-        public void UpdatePlaybackPositionFromMediaElement(TimeSpan position)
-        {
-            _PlaybackPosition = position;
-            RaisePropertyChanged();
         }
 
         private void OnUserUpdatedPosition()

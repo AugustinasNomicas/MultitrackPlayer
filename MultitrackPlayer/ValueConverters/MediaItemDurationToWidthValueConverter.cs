@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Data;
-using MultitrackPlayer.Controls;
 
 namespace MultitrackPlayer.ValueConverters
 {
@@ -11,7 +10,7 @@ namespace MultitrackPlayer.ValueConverters
         {
             var duration = (TimeSpan)values[0];
             var zoomFactor = (double)values[1];
-            const int millisecondsPerPixel = TimeRuler.MillisecondsPerPixel;
+            var millisecondsPerPixel = (int)values[2];
 
             return duration.TotalMilliseconds / (millisecondsPerPixel / zoomFactor);
         }

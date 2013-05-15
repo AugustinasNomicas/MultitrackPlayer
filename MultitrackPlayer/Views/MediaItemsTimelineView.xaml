@@ -21,6 +21,7 @@
                     <MultiBinding Converter="{StaticResource MediaItemDurationToWidthValueConverter}">
                         <Binding Path="MediaItem.Duration" />
                         <Binding Path="MediaItemsTimelineViewModel.ZoomFactor" />
+                        <Binding Path="MediaItemsTimelineViewModel.MillisecondsPerPixel" />
                     </MultiBinding>
                 </Border.Width>
 

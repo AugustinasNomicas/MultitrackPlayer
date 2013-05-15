@@ -111,11 +111,6 @@ namespace MultitrackPlayer.Services
             SetAbsolutePosition(TimeSpan.FromMilliseconds(0));
         }
 
-        public void Pause()
-        {
-            MediaElement.Pause();
-        }
-
         /// <summary>
         /// Starts next media item
         /// </summary>

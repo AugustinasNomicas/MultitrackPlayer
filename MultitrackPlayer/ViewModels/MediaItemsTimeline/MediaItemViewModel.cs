@@ -1,5 +1,4 @@
-﻿using System.Windows;
-using Microsoft.Practices.Prism.ViewModel;
+﻿using Microsoft.Practices.Prism.ViewModel;
 using MultitrackPlayer.Model;
 
 namespace MultitrackPlayer.ViewModels.MediaItemsTimeline
@@ -41,24 +40,6 @@ namespace MultitrackPlayer.ViewModels.MediaItemsTimeline
             }
         }
 
-        private bool _isDragOver;
-        public bool IsDragOver
-        {
-            get
-            {
-                return _isDragOver;
-            }
-            set
-            {
-                if (_isDragOver != value)
-                {
-                    _isDragOver = value;
-                    RaisePropertyChanged();
-                }
-            }
-        }
-        
-        
         #endregion
 
         public override string ToString()

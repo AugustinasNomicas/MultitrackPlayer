@@ -6,13 +6,10 @@
              xmlns:controls="clr-namespace:MultitrackPlayer.Controls"
              xmlns:views="clr-namespace:MultitrackPlayer.Views"
              xmlns:viewModels="clr-namespace:MultitrackPlayer.ViewModels"
-             xmlns:valueConverters="clr-namespace:MultitrackPlayer.ValueConverters"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="500" d:DataContext="{d:DesignInstance viewModels:MultitrackPlayerViewModel}">
 
     <UserControl.Resources>
-        <valueConverters:MediaItemDurationToWidthValueConverter x:Key="MediaItemDurationToWidthValueConverter"></valueConverters:MediaItemDurationToWidthValueConverter>
-
         <ControlTemplate x:Key="PlayThumb">
             <Border Background="Transparent" Padding="0,0,8,0">
                 <Rectangle Width="2" Stroke="#550000AA" StrokeThickness="2" />
@@ -89,19 +86,24 @@
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" x:Name="MediaItemsScroller" CanContentScroll="False" ScrollChanged="MediaItemsScroller_OnScrollChanged">
                 <Grid>
                     <StackPanel>
-                        <controls:TimeRuler x:Name="TimeRuler"
+                        <controls:TimeRuler
                                             MouseMove="TimeRuler_OnMouseMove"
                                             Background="LightGray"
                                             Cursor="Hand"
                                             FontWeight="Bold"
-                                            Height="16" Zoom="{Binding ZoomFactor, Mode=OneWay}" Length="{Binding TotalLength}" />
-                        <views:MediaItemsTimelineView x:Name="MediaItemsTimelineView"  DataContext="{Binding MediaItemsTimelineViewModel}" Margin="0,1,0,0" />
+                                            Height="16" 
+                                            Zoom="{Binding ZoomFactor, Mode=OneWay}"
+                                            MillisecondsPerPixel="{Binding MillisecondsPerPixel, Mode=OneWay}"
+                                            Length="{Binding TotalLength}" />
+                        
+                        <views:MediaItemsTimelineView DataContext="{Binding MediaItemsTimelineViewModel}" Margin="0,1,0,0" />
                     </StackPanel>
                     <!-- play marker -->
                     <controls:TimeThumb Template="{StaticResource PlayThumb}"
                                         MaxValue="{Binding TotalLength}"
                                         Value="{Binding PlaybackPosition}"
                                         Zoom="{Binding ZoomFactor, Mode=OneWay}"
+                                        MillisecondsPerPixel="{Binding MillisecondsPerPixel, Mode=OneWay}"
                                         x:Name="TimeThumb" />
                 </Grid>
             </ScrollViewer>

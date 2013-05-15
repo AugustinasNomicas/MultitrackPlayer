@@ -7,9 +7,20 @@ namespace MultitrackPlayer.Controls
 {
     class TimeThumb : Thumb
     {
-        const int MillisecondsPerPixel = TimeRuler.MillisecondsPerPixel;
         private bool _isInDrag = false;
         #region Properties
+
+
+        public int MillisecondsPerPixel
+        {
+            get { return (int)GetValue(MillisecondsPerPixelProperty); }
+            set { SetValue(MillisecondsPerPixelProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for MillisecondsPerPixel.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty MillisecondsPerPixelProperty =
+            DependencyProperty.Register("MillisecondsPerPixel", typeof(int), typeof(TimeThumb), new PropertyMetadata(50));
+
         public TimeSpan Value
         {
             get { return (TimeSpan)GetValue(ValueProperty); }

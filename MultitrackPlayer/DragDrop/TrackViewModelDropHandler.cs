@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using MultitrackPlayer.Utils.DragDrop;
-using MultitrackPlayer.Utils.DragDrop.Helpers;
 using MultitrackPlayer.ViewModels.MediaItemsTimeline;
 
 namespace MultitrackPlayer.DragDrop

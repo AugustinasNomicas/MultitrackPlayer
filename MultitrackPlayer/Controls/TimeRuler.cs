@@ -8,8 +8,6 @@ namespace MultitrackPlayer.Controls
 {
     public class TimeRuler : Control
     {
-        public const int MillisecondsPerPixel = 50;
-
         #region Properties
 
         #region Length
@@ -18,7 +16,7 @@ namespace MultitrackPlayer.Controls
         /// </summary>
         public TimeSpan Length
         {
-            get { return (TimeSpan)GetValue(LengthProperty); }
+            private get { return (TimeSpan)GetValue(LengthProperty); }
             set { SetValue(LengthProperty, value); }
         }
 
@@ -35,7 +33,7 @@ namespace MultitrackPlayer.Controls
         /// </summary>
         public double Zoom
         {
-            get
+            private get
             {
                 return (double)GetValue(ZoomProperty);
             }
@@ -61,10 +59,9 @@ namespace MultitrackPlayer.Controls
         /// <summary>
         /// Gets or sets label step size in pixels
         /// </summary>
-        public int LabelStep
+        private int LabelStep
         {
             get { return (int)GetValue(LabelStepProperty); }
-            set { SetValue(LabelStepProperty, value); }
         }
 
 
@@ -72,6 +69,20 @@ namespace MultitrackPlayer.Controls
             DependencyProperty.Register("LabelStep", typeof(int), typeof(TimeRuler), new FrameworkPropertyMetadata(100,
                 FrameworkPropertyMetadataOptions.AffectsRender));
 
+
+        #endregion
+
+        #region MillisecondsPerPixel
+
+        public int MillisecondsPerPixel
+        {
+            private get { return (int)GetValue(MillisecondsPerPixelProperty); }
+            set { SetValue(MillisecondsPerPixelProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for MillisecondsPerPixel.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty MillisecondsPerPixelProperty =
+            DependencyProperty.Register("MillisecondsPerPixel", typeof(int), typeof(TimeRuler), new PropertyMetadata(50));
 
         #endregion
 
@@ -88,10 +99,8 @@ namespace MultitrackPlayer.Controls
             base.OnRender(drawingContext);
             RenderBackground(drawingContext);
 
-            if (Zoom == 0)
+            if (Math.Abs(Zoom - 0) < 0.001)
                 Zoom = 1;
-
-
 
             var millisecondsPerPixelScaled = MillisecondsPerPixel * Zoom;
             var lengthInPixels = Length.TotalMilliseconds / millisecondsPerPixelScaled;

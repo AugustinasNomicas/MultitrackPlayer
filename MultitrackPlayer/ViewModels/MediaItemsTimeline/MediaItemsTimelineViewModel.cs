@@ -33,7 +33,26 @@ namespace MultitrackPlayer.ViewModels.MediaItemsTimeline
                 _tracks = value;
                 RaisePropertyChanged();
             }
-        } 
+        }
+
+
+        private int _millisecondsPerPixel;
+        public int MillisecondsPerPixel
+        {
+            get
+            {
+                return _millisecondsPerPixel;
+            }
+            set
+            {
+                if (_millisecondsPerPixel != value)
+                {
+                    _millisecondsPerPixel = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+        
         #endregion
     }
 }

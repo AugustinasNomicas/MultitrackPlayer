@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.Linq;
 using System.Windows.Controls;
 using MultitrackPlayer.DragDrop;
@@ -13,7 +12,7 @@ namespace MultitrackPlayer
 {
     public class MultitrackPlayerController
     {
-        private const double ZoomStep = 0.02;
+        private const int MillisecondsPerPixel = 50;
 
         private MultitrackPlayerViewModel _multitrackPlayerViewModel;
         private TracksViewModel _tracksViewModel;
@@ -50,7 +49,7 @@ namespace MultitrackPlayer
         private void BuildViewModels()
         {
             BuildTracksViewModel();
-            BuildMediaItemsTimelineViewModels();
+            BuildMediaItemsTimelineViewModel();
             BuildMultitrackPlayerViewModel();
         }
 
@@ -69,24 +68,23 @@ namespace MultitrackPlayer
                 {
                     TracksViewModel = _tracksViewModel,
                     MediaItemsTimelineViewModel = _mediaItemsTimelineViewModel,
-                    ZoomInCommand = new DelegateCommand(ExecuteZoomInCommand),
-                    ZoomOutCommand = new DelegateCommand(ExecuteZoomOutCommand),
                     PlayCommand = new DelegateCommand(ExecutePlayCommand),
-                    StopCommand = new DelegateCommand(ExecuteStopCommand)
+                    StopCommand = new DelegateCommand(ExecuteStopCommand),
+                    MillisecondsPerPixel = MillisecondsPerPixel
                 };
 
             _multitrackPlayerViewModel.UserUpdatedPosition += (sender, args) => _playbackService.Position = _multitrackPlayerViewModel.PlaybackPosition;
         }
 
-        private void BuildMediaItemsTimelineViewModels()
+        private void BuildMediaItemsTimelineViewModel()
         {
             _mediaItemsTimelineViewModel = new MediaItemsTimelineViewModel
                 {
-                    Tracks = new ObservableCollection<TrackViewModel>()
+                    Tracks = new ObservableCollection<TrackViewModel>(),
+                    MillisecondsPerPixel = MillisecondsPerPixel
                 };
 
             CollectionObserver.BindCollection(_mediaItemsTimelineViewModel.Tracks, _tracks, track => BuildMediaItemsTimelineTrackViewModel(track, _mediaItemsTimelineViewModel));
-
         }   
 
         private TrackViewModel BuildMediaItemsTimelineTrackViewModel(ITrack track, MediaItemsTimelineViewModel mediaItemsTimelineViewModel)
@@ -147,16 +145,6 @@ namespace MultitrackPlayer
         #endregion
 
         #region Commands
-
-        private void ExecuteZoomInCommand()
-        {
-            _multitrackPlayerViewModel.ZoomFactor += ZoomStep;
-        }
-
-        private void ExecuteZoomOutCommand()
-        {
-            _multitrackPlayerViewModel.ZoomFactor -= ZoomStep;
-        }
 
         private void ExecutePlayCommand()
         {
